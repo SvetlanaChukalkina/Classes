@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Optional
 
 from src.product import Product
 
@@ -8,11 +8,11 @@ class Category:
 
     name: str
     description: str
-    products: list
-    category_count = 0
-    product_count = 0
+    products: list[Product]
+    category_count: int = 0
+    product_count: int = 0
 
-    def __init__(self, name: Any, description: Any, products: Any = None) -> None:
+    def __init__(self, name: str, description: str, products: Optional[list] = None) -> None:
         self.name = name
         self.description = description
         self.__products = products if products else []
@@ -36,7 +36,7 @@ class Category:
         """Добавляет продукт в атрибут products,
         прибавляет 1 к класс-атрибуту «счетчик продуктов»"""
         self.add_product(new_product)
-        Category.category_count += 1
+        Category.product_count += 1
 
     @property
     def products_list(self) -> list:
