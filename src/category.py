@@ -19,7 +19,7 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
 
-    @property
+    @property  # type: ignore
     def products(self) -> str:
         """Выводит список товаров в виде строк в заданном формате"""
         products_str = ""
@@ -31,7 +31,7 @@ class Category:
         """Добавляет продукт в приватный атрибут products"""
         self.__products.append(new_product)
 
-    @products.setter
+    @products.setter  # type: ignore
     def products(self, new_product: Product) -> None:
         """Добавляет продукт в атрибут products,
         прибавляет 1 к класс-атрибуту «счетчик продуктов»"""

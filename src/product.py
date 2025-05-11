@@ -16,12 +16,12 @@ class Product:
         self.quantity = quantity
 
     @classmethod
-    def new_product(cls, new_product: Any)-> Product:
+    def new_product(cls, new_product: Any):
         """Принимает на вход параметры товара в словаре,
         возвращает созданный объект класса Product"""
         return cls(**new_product)
 
-    @property
+    @property  # type: ignore
     def price(self) -> Any:
         """Возвращает значение приватного атрибута цены"""
         return self.__price
