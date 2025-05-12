@@ -1,6 +1,7 @@
 import pytest
 
 from src.category import Category
+from src.category_iterator import CategoryIterator
 from src.product import Product
 
 
@@ -32,3 +33,18 @@ def second_category() -> Category:
 @pytest.fixture
 def product() -> Product:
     return Product(name="Sber", description="57 Inch", price=3000.0, quantity=3)
+
+
+@pytest.fixture
+def test_category_iterator(second_category: Category) -> CategoryIterator:
+    return CategoryIterator(second_category)
+
+
+@pytest.fixture
+def first_product() -> Product:
+    return Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 100.0, 5)
+
+
+@pytest.fixture
+def second_product() -> Product:
+    return Product("Iphone 15", "512GB, Gray space", 200.0, 8)

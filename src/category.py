@@ -19,12 +19,17 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
 
+    def __str__(self) -> str:
+        """Возвращает строковое отображение в заданном виде для объектов класса"""
+        products_sum = sum(product.quantity for product in self.__products)
+        return f"{self.name}, количество продуктов: {products_sum} шт."
+
     @property  # type: ignore
     def products(self) -> str:
         """Выводит список товаров в виде строк в заданном формате"""
         products_str = ""
         for product in self.__products:
-            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            products_str += f"{str(product)}\n"
         return products_str
 
     def add_product(self, new_product: Product) -> None:

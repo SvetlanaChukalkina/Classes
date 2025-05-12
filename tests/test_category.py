@@ -1,6 +1,9 @@
 from typing import Any
 
+import pytest
+
 from src.category import Category
+from src.category_iterator import CategoryIterator
 
 
 def test_category_init(first_category: Category, second_category: Category) -> None:
@@ -20,7 +23,7 @@ def test_category_init(first_category: Category, second_category: Category) -> N
 
 def test_products_property(first_category: Category) -> None:
     """Проверка вывода списка товаров в виде строк в заданном формате"""
-    assert first_category.products == "Samsung, 100.0 руб. Остаток: 5 шт.\niPhone, 300.0 руб. Остаток: 2 шт.\n"
+    assert first_category.products == "Samsung, 100.0 руб. Остаток: 5 шт.\n\niPhone, 300.0 руб. Остаток: 2 шт.\n\n"
 
 
 def test_products_setter(first_category: Category, product: list[Any]) -> None:
@@ -30,3 +33,20 @@ def test_products_setter(first_category: Category, product: list[Any]) -> None:
     assert len(first_category.products_list) == 2
     first_category.products = product
     assert len(first_category.products_list) == 3
+
+
+def test_category_str(first_category: Category) -> Any:
+    """Проверка корректности строкового представления"""
+    assert str(first_category) == "Смартфоны, количество продуктов: 7 шт."
+
+
+def test_iterator(test_category_iterator: CategoryIterator) -> None:
+    """Проверка корректности работы итератора"""
+    iter(test_category_iterator)
+    assert test_category_iterator.index == 0
+    assert next(test_category_iterator).name == "LG"
+    assert next(test_category_iterator).name == "Samsung"
+    assert next(test_category_iterator).name == "Sber"
+
+    with pytest.raises(StopIteration):
+        next(test_category_iterator)
