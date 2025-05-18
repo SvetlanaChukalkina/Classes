@@ -1,8 +1,5 @@
 from typing import Any
 
-from src.category import Category
-from src.product import Product
-
 
 class CategoryIterator:
     def __init__(self, category_obj: Any) -> None:

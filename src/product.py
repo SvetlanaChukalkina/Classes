@@ -19,10 +19,12 @@ class Product:
         """Возвращает строковое отображение в заданном виде для объектов класса"""
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.\n"
 
-    def __add__(self, other) -> int | Any:
+    def __add__(self, other: Any) -> int | Any:
         """Cкладывает продукты, в итоге получается
-        полная стоимость всех товаров на складе."""
-        return (self.quantity * self.__price) + (other.quantity * other.__price)
+        полная стоимость всех товаров на складе"""
+        if type(other) is Product:
+            return (self.quantity * self.__price) + (other.quantity * other.__price)
+        raise TypeError
 
     @classmethod
     def new_product(cls, new_product: dict):
