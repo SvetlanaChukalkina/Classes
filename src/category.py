@@ -34,7 +34,10 @@ class Category:
 
     def add_product(self, new_product: Product) -> None:
         """Добавляет продукт в приватный атрибут products"""
-        self.__products.append(new_product)
+        if isinstance(new_product, Product):
+            self.__products.append(new_product)
+        else:
+            raise TypeError
 
     @products.setter  # type: ignore
     def products(self, new_product: Product) -> None:

@@ -4,6 +4,7 @@ import pytest
 
 from src.category import Category
 from src.category_iterator import CategoryIterator
+from src.smartphone import Smartphone
 
 
 def test_category_init(first_category: Category, second_category: Category) -> None:
@@ -50,3 +51,17 @@ def test_iterator(test_category_iterator: CategoryIterator) -> None:
 
     with pytest.raises(StopIteration):
         next(test_category_iterator)
+
+
+def test_products_setter_error(first_category: Category, product: list[Any]) -> None:
+    """Проверка поведения программы при добавлении
+    не продукта в атрибут products"""
+    with pytest.raises(TypeError):
+        first_category.products = "0"
+
+
+def test_products_setter_smartphone(first_category: Category, first_smartphone: Smartphone) -> None:
+    """Проверка поведения программы при добавлении
+    объекта класса Smartphone в атрибут products"""
+    first_category.products = first_smartphone
+    first_category.products_list[-1].name == "Samsung Galaxy S23 Ultra"
