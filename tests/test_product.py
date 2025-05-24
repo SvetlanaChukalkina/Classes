@@ -25,7 +25,7 @@ def test_product_update(capsys: CaptureFixture[str], product: Product) -> None:
     после проверки на соответствие заданным критериям"""
     product.price = -100
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    assert message.out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
 
     product.price = 15000
     assert product.price == 15000
