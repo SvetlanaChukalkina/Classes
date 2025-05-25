@@ -54,6 +54,8 @@ class Category:
     def middle_price(self) -> float | int:
         """Вычисляет средний ценник всех товаров в категории"""
         try:
-            return sum([product.price for product in self.__products]) / len(self.__products)
+            return sum([product.price for product in self.__products]) / sum(
+                [product.quantity for product in self.__products]
+            )
         except ZeroDivisionError:
             return 0
