@@ -65,3 +65,9 @@ def test_products_setter_smartphone(first_category: Category, first_smartphone: 
     объекта класса Smartphone в атрибут products"""
     first_category.products = first_smartphone
     first_category.products_list[-1].name == "Samsung Galaxy S23 Ultra"
+
+
+def test_middle_price(first_category: Category, category_without_product: Category) -> None:
+    """Проверка корректности вычисления среднего ценника товаров в категории"""
+    assert int(first_category.middle_price()) == 57
+    assert category_without_product.middle_price() == 0
